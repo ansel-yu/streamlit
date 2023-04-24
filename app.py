@@ -1,11 +1,8 @@
 import pandas as pd
 import geopandas as gpd
-import requests, io, csv, json
+import requests
 import streamlit as st
-
-# Map visualization.
 import keplergl as kgl
-import ipywidgets as widgets
 from streamlit_keplergl import keplergl_static
 
 country_gdf = gpd.read_file('temp_country_geom.geojson')  
@@ -51,24 +48,3 @@ option = st.selectbox(
 
 st.write('You selected:', option)
 country_map(option, 0)
-
-# Choose country and administrative units.
-
-# country_dropdown = widgets.Dropdown(
-#     options= country_gdf['country_name_eng'][country_gdf['geometry'].isna()== False],
-#     description='Name:',
-#     disabled=False,
-# )
-
-# admin_dropdown = widgets.Dropdown(
-#     options=[('Country', 0),('First level', 1), ('Second level', 2), ('Capital city', 3)],
-#     value=0,
-#     description='Admin Unit:',
-# )
-
-# display(country_dropdown, admin_dropdown)
-
-
-# Show map by executing.
-# print(f'Country:{country_dropdown.value}, Level:{admin_dropdown.value}.')
-# country_map(country_dropdown.value, admin_dropdown.value)
