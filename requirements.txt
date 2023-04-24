@@ -1,11 +1,7 @@
 pandas
 geopandas
 requests
-io
-csv
-json
 keplergl
 ipywidgets
-node > 10.15.0
 streamlit_keplergl
 streamlit
