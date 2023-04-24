@@ -9,7 +9,7 @@ country_gdf = gpd.read_file('temp_country_geom.geojson')
 
 
 def country_map(country_name, admin_unit):
-    map_1 = kgl.KeplerGl(height=600)
+    map_1 = kgl.KeplerGl()
  
     # Counter map.
     if admin_unit == 0: 
@@ -46,5 +46,4 @@ option = st.selectbox(
     'Select a country',
     list(country_gdf['country_name_eng'][country_gdf['geometry'].isna()== False]))
 
-st.write('You selected:', option)
 country_map(option, 0)
