@@ -16,29 +16,7 @@ def country_map(country_name, admin_unit):
         country_data = country_gdf.loc[country_gdf['country_name_eng']== country_name]
         map_1.add_data(data= country_data, name='Country')
     
-
-    # Administrative unit map.
-    elif admin_unit == 1 or admin_unit == 2:
-        code_a3 = country_gdf['code_a3'].loc[country_gdf['country_name_eng']== country_name]
-        admin_unit_data = get_json(0, code_a3.values[0], admin_unit)
-        map_1.add_data(data= admin_unit_data, name='Admin unit')
-
-    # Capital point map.
-    elif admin_unit == 3:
-        json_url = 'http://api.worldbank.org/v2/country/'
-        json_name = '?format=json'
-        iso_a2 = country_gdf['iso_a2'].loc[country_gdf['country_name_eng']== country_name]
-        json_file = requests.get(json_url + iso_a2.values[0] + json_name).json()
-
-        city_df = pd.DataFrame(
-        {'City': [json_file[1][0]['capitalCity']],
-        'Latitude': [json_file[1][0]['latitude']],
-        'Longitude': [json_file[1][0]['longitude']]})
-        
-        city_gdf = gpd.GeoDataFrame(city_df, geometry=gpd.points_from_xy(city_df.Longitude, city_df.Latitude))
-        map_1.add_data(data= city_gdf, name='Capital')
-
-    return keplergl_static(map_1, center_map=True)
+    return keplergl_static(map_1, center_map=True, height= 800, width= 1200)
 
 
 
